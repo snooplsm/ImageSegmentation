@@ -103,7 +103,7 @@ def main():
     scaler = torch.cuda.amp.GradScaler()
 
     for epoch in range(NUM_EPOCHS):
-        print(f"epoch {epoch}/{NUM_EPOCHS})
+        print(f"epoch {epoch}/{NUM_EPOCHS}")
         train_fn(train_loader, model, optimizer, loss_fn, scaler)
 
         # save model
