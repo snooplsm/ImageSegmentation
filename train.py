@@ -15,11 +15,11 @@ from utils import (
 
 # Hyperparameters etc.
 LEARNING_RATE = 1e-4
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-BATCH_SIZE = 16
+DEVICE = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+BATCH_SIZE = 8
 NUM_CLASSES= 14
-NUM_EPOCHS = 1
-NUM_WORKERS = 2
+NUM_EPOCHS = 20
+NUM_WORKERS = 1
 IMAGE_HEIGHT = 512  # 1280 originally
 IMAGE_WIDTH = 512  # 1918 originally
 PIN_MEMORY = True
@@ -103,6 +103,7 @@ def main():
     scaler = torch.cuda.amp.GradScaler()
 
     for epoch in range(NUM_EPOCHS):
+        print(f"epoch {epoch}/{NUM_EPOCHS})
         train_fn(train_loader, model, optimizer, loss_fn, scaler)
 
         # save model
